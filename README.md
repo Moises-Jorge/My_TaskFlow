@@ -39,7 +39,7 @@ Follow the steps below to clone the repository and run the application on your m
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com
+git clone https://github.com/Moises-Jorge/My_TaskFlow.git
 cd My_TaskFlow
 ```
 
