@@ -1,5 +1,24 @@
 {% extends 'taskflow/base.html' %}
 
 {% block content %}
-	TESTE
+	{% if user.is_authenticated %}
+		<div class="row">
+			<form method="post" class="shadow p-3 mt-3 col-12 col-md-4">
+				{% csrf_token %}
+
+				<div class="mb-3">
+					<label for="task_id" class="form-label" >Task</label>
+					{{ form.task }}
+				</div>
+
+				<button type="submit" class="form-control btn btn-primary">
+					ADD
+				</button>
+			</form>
+		</div>
+	{% else %}
+		<a href="#">
+			<p class="text-center mt-3">Clique aqui para realizar seu cadastro e comecar a organizar suas tarefas!</p>
+		</a>
+	{% endif %}
 {% endblock content %}
