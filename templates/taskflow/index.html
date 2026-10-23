@@ -16,19 +16,39 @@
 				</button>
 			</form>
 
-			<div>
-				<div>
-					{{ completed_tasks }}
+			<div class="mt-3 p-4 col-12 col-md-8">
+				<div class="p-3 mt-3 col-12">
+					<h2>Tasks</h2>
+					{% if uncompleted_tasks %}
+						{% for task in uncompleted_tasks %}
+							<div class="input-group mb-3 col-12">
+								<span class="input-group-text col-8" id="basic-addon1"> {{ task }} </span>
+								<a class="btn btn-primary col-2" href="#">Conclude</a>
+								<a class="btn btn-danger col-2" href="#">Delete</a>
+							</div>
+						{% endfor %}
+					{% else %}
+						<p>There are no tasks registered.</p>
+					{% endif %}
 				</div>
 
-				<div>
-					{{ uncompleted_tasks }}
+				<div class="p-3 mt-3 col-12">
+					<h2>Completed Tasks</h2>
+					{% if completed_tasks %}
+						{% for task in completed_tasks %}
+							<div class="mb-3 col-12 text-bg-info p-3">
+								<span class="col-8"> {{ task }} </span>
+							</div>
+						{% endfor %}
+					{% else %}
+						<p>There are no tasks registered.</p>
+					{% endif %}
 				</div>
 			</div>
 		</div>
 	{% else %}
 		<a href="#">
-			<p class="text-center mt-3">Clique aqui para realizar seu cadastro e comecar a organizar suas tarefas!</p>
+			<p class="text-center mt-3">Click here to register and start organizing your tasks!</p>
 		</a>
 	{% endif %}
 {% endblock content %}
