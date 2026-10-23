@@ -31,8 +31,8 @@
 						{% for task in uncompleted_tasks %}
 							<div class="input-group mb-3 col-12">
 								<span class="input-group-text col-8" id="basic-addon1"> {{ task }} </span>
-								<a class="btn btn-primary col-2" href="#">Conclude</a>
-								<a class="btn btn-danger col-2" href="#">Delete</a>
+								<a class="btn btn-primary col-2" href="{% url 'conclude' task_id=task.id %}">Conclude</a>
+								<a class="btn btn-danger col-2" href="{% url 'delete' task_id=task.id %}">Delete</a>
 							</div>
 						{% endfor %}
 					{% else %}

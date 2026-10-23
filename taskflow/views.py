@@ -64,3 +64,28 @@ class IndexView(View):
 				return render(request, 'taskflow/index.html', context)
 		else:
 			return render(request, 'taskflow/index.html')
+
+class ConcludeView(View):
+	def get(self, request, task_id):
+		if (request.user.is_authenticated):
+			total_tasks = Task.objects.filter(user=request.user)
+			if (total_tasks is not None):
+				for task in total_tasks:
+					if task.id == task_id:
+						task.completed = True
+						task.save()
+			return redirect('index')
+		else:
+			return redirect('index')
+
+class DeleteView(View):
+	def get(self, request, task_id):
+		if (request.user.is_authenticated):
+			total_tasks = Task.objects.filter(user=request.user)
+			if (total_tasks is not None):
+				for task in total_tasks:
+					if task.id == task_id:
+						task.delete()
+			return redirect('index')
+		else:
+			return redirect('index')
