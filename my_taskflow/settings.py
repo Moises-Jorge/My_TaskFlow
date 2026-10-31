@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'taskflow',
+    'users',
 ]
 
 MIDDLEWARE = [
