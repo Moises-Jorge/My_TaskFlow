@@ -9,7 +9,7 @@
 				{% if form.errors %}
 					{% for field, errors in form.errors.items %}
 						{% for error in errors %}
-							<span class="text-danger"> *{{ error }} </span>
+							<span class="text-danger"> *{{ error }} </span></br>
 						{% endfor %}
 					{% endfor %}
 				{% endif %}
