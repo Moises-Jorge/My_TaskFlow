@@ -1,0 +1,29 @@
+{% extends "taskflow/base.html" %}
+
+{% block content %}
+	<div class="row col-12 justify-content-center">
+		<form method="post" class="shadow p-3 mt-5 col-12 col-md-8 col-lg-4">
+			{% csrf_token %}
+
+			{% if form.errors %}
+				{% for field, errors in form.errors.items %}
+					{% for error in errors %}
+						<span class="text-danger"> *{{ error }} </span></br>
+					{% endfor %}
+				{% endfor %}
+			{% endif %}
+
+			<div class="mb-3">
+				<label class="form-label" for="id_login_username">Username</label>
+				{{ form.username }}
+			</div>
+
+			<div class="mb-3">
+				<label class="form-label" for="id_login_password">Password</label>
+				{{ form.password }}
+			</div>
+
+			<button type="submit" class="form-control btn btn-primary" >Login</button>
+		</form>
+	</div>
+{% endblock content %}

@@ -5,4 +5,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('taskflow.urls')),
     path('users/', include('users.urls')),
+    path('authentication/', include('authentication.urls')),
 ]

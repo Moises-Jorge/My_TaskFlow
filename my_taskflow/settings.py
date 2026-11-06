@@ -29,6 +29,7 @@ INSTALLED_APPS = [
 
     'taskflow',
     'users',
+    'authentication',
 ]
 
 MIDDLEWARE = [
@@ -124,3 +125,5 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
+
+LOGIN_URL = '/authentication/login'
