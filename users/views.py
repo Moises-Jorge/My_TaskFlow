@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic import View
+from django.contrib.auth import update_session_auth_hash
 from .forms import MyUserCreationForm, MyPasswordChangeForm
 
 class RegisterView(View):
@@ -21,7 +22,7 @@ class RegisterView(View):
         if (form.is_valid()):
             form.save()
             return redirect('register_success')
-        
+
         context = {
             'form': form,
         }
@@ -29,7 +30,26 @@ class RegisterView(View):
 
 class ResetPassView(View):
     def get(self, request):
-        pass
+        if (request.user.is_authenticated):
+            form = MyPasswordChangeForm(user=request.user)
+            context = {
+                'form': form,
+            }
+            return render(request, 'users/reset_pass.html', context)
+        return redirect('index')
+
+    def post(self, request):
+        if (request.user.is_authenticated):
+            form = MyPasswordChangeForm(user=request.user, data=request.POST)
+            if (form.is_valid()):
+                user = form.save()
+                update_session_auth_hash(request, user)
+                return redirect('reset_success')
+            context = {
+                'form': form,
+            }
+            return render(request, 'users/reset_pass.html', context)
+        return redirect('index')
 
 class RegisterSuccessView(View):
     def get(self, request):
